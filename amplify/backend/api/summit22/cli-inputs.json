@@ -1,0 +1,14 @@
+{
+  "version": 1,
+  "serviceConfiguration": {
+    "apiName": "summit22",
+    "serviceName": "AppSync",
+    "gqlSchemaPath": "/Users/mattcoles/Development/summit22/amplify/backend/api/summit22/schema.graphql",
+    "defaultAuthType": {
+      "mode": "API_KEY",
+      "expirationTime": 365,
+      "apiKeyExpirationDate": "2023-05-02T10:11:29.659Z",
+      "keyDescription": ""
+    }
+  }
+}
