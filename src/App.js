@@ -1,19 +1,15 @@
 import './App.css';
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { MapView, Heading, Button } from '@aws-amplify/ui-react';
 import { createMap } from "maplibre-gl-js-amplify";
 import '@aws-amplify/ui-react/styles.css';
 import "maplibre-gl/dist/maplibre-gl.css";  
 import { Marker, Popup } from 'react-map-gl';
-import { API } from "aws-amplify";
+import { API, graphqlOperation } from "aws-amplify";
+import * as queries from './graphql/queries';
 import * as mutations from './graphql/mutations';
+import * as subscriptions from './graphql/subscriptions';
 import { v4 as uuidv4 } from 'uuid';
-
-async function initializeMap() {
-  const map = await createMap({
-      container: "map", // An HTML Element or HTML element ID to render the map in https://maplibre.org/maplibre-gl-js-docs/api/map/
-  })
-} 
 
 async function emojiFeedback(locationName, emoji) {
   const emojiFeedbackData = {
@@ -24,6 +20,19 @@ async function emojiFeedback(locationName, emoji) {
   
   const createEmoji = await API.graphql({ query: mutations.createEmojiFeedback, variables: {input: emojiFeedbackData}});
 }
+
+async function getlocationEmojiCounts() {
+  const locationEmojiCounts = await API.graphql({ query: queries.listEmojiFeedbacks });
+  console.log(locationEmojiCounts);
+}
+
+async function initializeMap() {
+  const map = await createMap({
+      container: "map", // An HTML Element or HTML element ID to render the map in https://maplibre.org/maplibre-gl-js-docs/api/map/
+  })
+} 
+
+initializeMap();
 
 function MarkerWithPopup({ latitude, longitude, locationName }) {
   const [showPopup, setShowPopup] = React.useState(false);
@@ -55,10 +64,30 @@ function MarkerWithPopup({ latitude, longitude, locationName }) {
   );
 }
 
-
-initializeMap();
-
 function App() {
+  const [ emojis, setEmojis ] = useState([]);
+
+  useEffect(() => {
+    const subscription = subscribeToOnCreateEmojiFeedback()
+  }, []);
+
+  async function subscribeToOnCreateEmojiFeedback() {
+    const subscription = API.graphql({
+      query: subscriptions.onCreateEmojiFeedback,
+        }).subscribe({
+          next: ({ provider, value }) => {
+            const emoji = value.data.onCreateEmojiFeedback.emoji;
+            const location = value.data.onCreateEmojiFeedback.location;
+            console.log({ provider, emoji, location });
+            setEmojis((emojis) => [emoji, ...emojis]);
+          },
+        error: (error) => console.warn(error),
+      });
+    return subscription;
+  }
+
+  getlocationEmojiCounts();
+
   const [{ latitude, longitude }, setMarkerLocation] = useState({
     latitude: 40,
     longitude: -100,
@@ -70,7 +99,7 @@ function App() {
     <div className="App">
       <header className="App-header">
         <p>
-          AWS SYDNEY SUMMIT EXCITE-MOMETER 
+        🇦🇺🤩🌡 AWS SYDNEY SUMMIT EXCITE-MOMETER 🌡🤩🇦🇺
         </p>
         <MapView
           initialViewState={{
