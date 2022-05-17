@@ -44,7 +44,7 @@
     }
   },
   "geo": {
-    "map61f2e8ab": {
+    "map747dfa10": {
       "isDefault": true,
       "providerPlugin": "awscloudformation",
       "service": "Map",
