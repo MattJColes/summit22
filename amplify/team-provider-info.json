@@ -1,0 +1,26 @@
+{
+  "dev": {
+    "awscloudformation": {
+      "AuthRoleName": "amplify-summit22-dev-03232-authRole",
+      "UnauthRoleArn": "arn:aws:iam::491688732568:role/amplify-summit22-dev-03232-unauthRole",
+      "AuthRoleArn": "arn:aws:iam::491688732568:role/amplify-summit22-dev-03232-authRole",
+      "Region": "ap-southeast-2",
+      "DeploymentBucketName": "amplify-summit22-dev-03232-deployment",
+      "UnauthRoleName": "amplify-summit22-dev-03232-unauthRole",
+      "StackName": "amplify-summit22-dev-03232",
+      "StackId": "arn:aws:cloudformation:ap-southeast-2:491688732568:stack/amplify-summit22-dev-03232/30e72470-d5ee-11ec-b5c1-06a44f7dc8e2",
+      "AmplifyAppId": "d3ct66ldwciug3"
+    },
+    "categories": {
+      "auth": {
+        "summit22e4cc7c65": {}
+      },
+      "hosting": {
+        "amplifyhosting": {
+          "appId": "d3ct66ldwciug3",
+          "type": "cicd"
+        }
+      }
+    }
+  }
+}
