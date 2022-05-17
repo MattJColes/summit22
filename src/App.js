@@ -1,5 +1,7 @@
 import './App.css';
 import React, { useState, useEffect } from 'react';
+import EmojiView from './EmojiView'
+import { v4 as uuidv4 } from 'uuid';
 import { MapView, Heading, Button } from '@aws-amplify/ui-react';
 import { createMap } from "maplibre-gl-js-amplify";
 import '@aws-amplify/ui-react/styles.css';
@@ -9,7 +11,7 @@ import { API, graphqlOperation } from "aws-amplify";
 import * as queries from './graphql/queries';
 import * as mutations from './graphql/mutations';
 import * as subscriptions from './graphql/subscriptions';
-import { v4 as uuidv4 } from 'uuid';
+
 
 async function emojiFeedback(locationName, emoji) {
   const emojiFeedbackData = {
@@ -97,10 +99,9 @@ function App() {
 
   return (
     <div className="App">
-      <header className="App-header">
-        <p>
-        🇦🇺🤩🌡 AWS SYDNEY SUMMIT EXCITE-MOMETER 🌡🤩🇦🇺
-        </p>
+      <div className="Titlebar"><h4>🇦🇺 🤩 🌡 AWS SYDNEY SUMMIT EXCITE-MOMETER 🌡 🤩 🇦🇺</h4>
+      <EmojiView/></div>
+      <div className="Map">
         <MapView
           initialViewState={{
             latitude: -33.721023,
@@ -123,7 +124,7 @@ function App() {
           <MarkerWithPopup latitude={50.526000} longitude={20.255100} locationName="Europe"/>
           <MarkerWithPopup latitude={44.047900} longitude={95.619700} locationName="Asia"/>
         </MapView>
-      </header>
+      </div>
     </div>
   ); 
 }

@@ -1,6 +1,24 @@
 {
+  "api": {
+    "summit22": {
+      "service": "AppSync",
+      "providerPlugin": "awscloudformation",
+      "dependsOn": [],
+      "output": {
+        "authConfig": {
+          "defaultAuthentication": {
+            "authenticationType": "API_KEY",
+            "apiKeyConfig": {
+              "apiKeyExpirationDays": 7
+            }
+          },
+          "additionalAuthenticationProviders": []
+        }
+      }
+    }
+  },
   "auth": {
-    "summit22178fc908": {
+    "summit2253704e18": {
       "service": "Cognito",
       "providerPlugin": "awscloudformation",
       "dependsOn": [],
@@ -26,7 +44,7 @@
     }
   },
   "geo": {
-    "map53e07f5b": {
+    "mapa69cfa63": {
       "isDefault": true,
       "providerPlugin": "awscloudformation",
       "service": "Map",
@@ -35,7 +53,7 @@
       "dependsOn": [
         {
           "category": "auth",
-          "resourceName": "summit22178fc908",
+          "resourceName": "summit2253704e18",
           "attributes": [
             "UserPoolId"
           ]
@@ -43,24 +61,11 @@
       ]
     }
   },
-  "api": {
-    "summit22": {
-      "service": "AppSync",
-      "providerPlugin": "awscloudformation",
-      "dependsOn": [],
-      "output": {
-        "authConfig": {
-          "defaultAuthentication": {
-            "authenticationType": "API_KEY",
-            "apiKeyConfig": {
-              "apiKeyExpirationDays": 365,
-              "apiKeyExpirationDate": "2023-05-02T10:11:29.659Z",
-              "description": ""
-            }
-          },
-          "additionalAuthenticationProviders": []
-        }
-      }
+  "hosting": {
+    "amplifyhosting": {
+      "service": "amplifyhosting",
+      "type": "cicd",
+      "lastPushTimeStamp": "2022-05-17T02:16:01.506Z"
     }
   }
 }
