@@ -57,8 +57,21 @@ function MarkerWithPopup({ latitude, longitude, locationName }) {
           longitude={longitude}
           onClose={() => setShowPopup(true)}
         >
-          <Heading level={1}>{locationName}</Heading>
+          <Heading className="titles" level={1}>{locationName}</Heading>
+          <Button onClick={() => emojiFeedback(locationName, '😎')}>😎</Button>
+          <Button onClick={() => emojiFeedback(locationName, '😁')}>😁</Button>
+          <Button onClick={() => emojiFeedback(locationName, '🎉')}>🎉</Button>
+          <Button onClick={() => emojiFeedback(locationName, '👍')}>👍</Button>
+          <Button onClick={() => emojiFeedback(locationName, '🛠')}>🛠</Button>
+          <Button onClick={() => emojiFeedback(locationName, '🏆')}>🏆</Button>
           <Button onClick={() => emojiFeedback(locationName, '😀')}>😀</Button>
+          <Button onClick={() => emojiFeedback(locationName, '🤩')}>🤩</Button>
+          <Button onClick={() => emojiFeedback(locationName, '🙂')}>🙂</Button>
+          <Button onClick={() => emojiFeedback(locationName, '👩‍💻')}>👩‍💻</Button>
+          <Button onClick={() => emojiFeedback(locationName, '👨‍💻')}>👨‍💻</Button>
+          <Button onClick={() => emojiFeedback(locationName, '🧑‍💻')}>🧑‍💻</Button>
+          <Button onClick={() => emojiFeedback(locationName, '🤖')}>🤖</Button>
+          <Button onClick={() => emojiFeedback(locationName, '☕️')}>☕️</Button>
           <Button onClick={() => emojiFeedback(locationName, '🍕')}>🍕</Button>
         </Popup>
       )}
@@ -99,8 +112,10 @@ function App() {
 
   return (
     <div className="App">
-      <div className="Titlebar"><h4>🇦🇺 🤩 🌡 AWS SYDNEY SUMMIT EXCITE-MOMETER 🌡 🤩 🇦🇺</h4>
-      <EmojiView/></div>
+      <div className="Titlebar">
+        <h4>🇦🇺 🤩 🌡 AWS SYDNEY SUMMIT EXCITE-MOMETER 🌡 🤩 🇦🇺</h4>
+        {/* <EmojiView/></div> */}
+      </div>
       <div className="Map">
         <MapView
           initialViewState={{
@@ -110,13 +125,13 @@ function App() {
           }}>
           {/* ANZ */}
           <MarkerWithPopup latitude={-40.900600} longitude={174.886000} locationName="New Zealand"/>
-          <MarkerWithPopup latitude={-37.020100} longitude={144.964600} locationName="Victoria"/>
-          <MarkerWithPopup latitude={-41.640079} longitude={146.315918} locationName="Tasmania"/>
-          <MarkerWithPopup latitude={-19.491411} longitude={132.550964} locationName="Northern Territory"/>
-          <MarkerWithPopup latitude={-30.000233} longitude={136.209152} locationName="South Australia"/>
-          <MarkerWithPopup latitude={-25.042261} longitude={117.793221} locationName="Western Australia"/>
-          <MarkerWithPopup latitude={-20.917574} longitude={142.702789} locationName="Queensland"/>
-          <MarkerWithPopup latitude={-31.840233} longitude={145.612793} locationName="New South Wales"/>
+          <MarkerWithPopup latitude={-37.020100} longitude={144.964600} locationName="VIC"/>
+          <MarkerWithPopup latitude={-41.640079} longitude={146.315918} locationName="TAS"/>
+          <MarkerWithPopup latitude={-19.491411} longitude={132.550964} locationName="NT"/>
+          <MarkerWithPopup latitude={-30.000233} longitude={136.209152} locationName="SA"/>
+          <MarkerWithPopup latitude={-25.042261} longitude={117.793221} locationName="WA"/>
+          <MarkerWithPopup latitude={-20.917574} longitude={142.702789} locationName="QLD"/>
+          <MarkerWithPopup latitude={-31.840233} longitude={145.612793} locationName="NSW"/>
           {/* Other Continents */}
           <MarkerWithPopup latitude={45.970000} longitude={-98.200000} locationName="North America"/>
           <MarkerWithPopup latitude={-8.783200} longitude={-55.491500} locationName="South America"/>
